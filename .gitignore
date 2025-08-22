@@ -1,0 +1,8 @@
+*
+!.gitignore
+!.zshrc
+!.zprofile
+!.config/
+!.config/bat/**
+!.config/nvim/**
+!.config/tmux/**
