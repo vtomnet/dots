@@ -3,6 +3,11 @@
 !.zshrc
 !.zprofile
 !.config/
+!.config/bat/
 !.config/bat/**
+!.config/nvim/
 !.config/nvim/**
+!.config/tmux/
 !.config/tmux/**
+!.config/git/
+!.config/git/**
