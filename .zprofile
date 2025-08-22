@@ -1,4 +1,4 @@
-eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(/usr/local/bin/brew shellenv)"
 
 export BUN_INSTALL="$HOME/.bun"
 export PLAN9=~/psrc/plan9

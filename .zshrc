@@ -1,7 +1,7 @@
 alias lc='eza'
 alias vi=nvim
 alias chrome='open -a "Google Chrome"'
-alias ed=/opt/homebrew/opt/ed/libexec/gnubin/ed
+#alias ed=/opt/homebrew/opt/ed/libexec/gnubin/ed
 setopt interactive_comments
 setopt shwordsplit
 set +H
@@ -28,7 +28,7 @@ function precmd() {
 readonly prompt
 #PS1=": %m %* %2~ ; "
 #PS1="%m %2 ~ %% "
-PS1="mbp %2~ %% "
+PS1="$self %2~ %% "
 
 export HISTSIZE=1000000
 export SAVEHIST=1000000
@@ -64,11 +64,22 @@ eval $(fnm env)
 bindkey -e
 bindkey "^[[3~" delete-char # zed needs this for some reason
 
-case $self in
-mini) printf '\033]50;SetProfile=mini\007' ;;
-vps) printf '\033]50;SetProfile=vps\007' ;;
-mbp) printf '\033]50;SetProfile=Basic\007' ;;
-esac
+_term_bg() { printf '\033]11;%s\007' >/dev/tty; }
+
+set_term_bg() {
+  case $self in
+    mini) _term_bg '#E8F5E9' ;;
+    vps) _term_bg '#E6F0FF' ;;
+    mbp) _term_bg '#FFFFFF' ;;
+  esac
+}
+
+ssh() {
+  command ssh "$@"
+  set_term_bg
+}
+
+set_term_bg
 
 claude() {
   local PORT=4141
