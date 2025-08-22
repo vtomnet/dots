@@ -7,6 +7,8 @@ setopt shwordsplit
 set +H
 set +o histexpand
 
+self=mini # or mbp, or vps
+
 function preexec() {
   timer=${timer:-$SECONDS}
 }
@@ -24,7 +26,9 @@ function precmd() {
 }
 
 readonly prompt
-PS1=": %* %2~ ; "
+#PS1=": %m %* %2~ ; "
+#PS1="%m %2 ~ %% "
+PS1="mbp %2~ %% "
 
 export HISTSIZE=1000000
 export SAVEHIST=1000000
@@ -59,6 +63,12 @@ eval $(fnm env)
 
 bindkey -e
 bindkey "^[[3~" delete-char # zed needs this for some reason
+
+case $self in
+mini) printf '\033]50;SetProfile=mini\007' ;;
+vps) printf '\033]50;SetProfile=vps\007' ;;
+mbp) printf '\033]50;SetProfile=Basic\007' ;;
+esac
 
 claude() {
   local PORT=4141
