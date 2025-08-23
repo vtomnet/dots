@@ -64,7 +64,8 @@ eval $(fnm env)
 bindkey -e
 bindkey "^[[3~" delete-char # zed needs this for some reason
 
-_term_bg() { printf '\033]11;%s\007' >/dev/tty; }
+#_term_bg() { printf '\033]11;%s\007'; }
+alias _term_bg="printf '\\033]11;%s\\007'"
 
 set_term_bg() {
   case $self in
